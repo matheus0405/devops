@@ -1,0 +1,8 @@
+# 1. Inicializa o cluster
+minikube start
+
+# 2. Verificar se o cluster está funcionando (todos os pods devem estar com status RUNNING)
+kubectl get pods --all-namespaces
+
+# 3. Habilitar dashboard
+minikube dashboard
