@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: tarefa
-          image: hrchlhck/tarefas:latest
+          image: suethkiu/tarefas:latest
           ports:
             - containerPort: 8000
               name: http

@@ -6,3 +6,5 @@ kubectl get pods --all-namespaces
 
 # 3. Habilitar dashboard
 minikube dashboard
+
+
