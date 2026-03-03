@@ -2,7 +2,7 @@ FROM prom/prometheus
 
 USER root
 
-ADD https://gist.githubusercontent.com/hrchlhck/b7ef72f770c8f52964fddf3d6656590d/raw/08ff68397c75f64d3e4929481f9b6265aaf46b60/config.yaml /etc/prometheus/prometheus.yml
+COPY ./prometheus.yml /etc/prometheus/prometheus.yml
 
 RUN chown nobody:nobody /etc/prometheus/prometheus.yml
 
