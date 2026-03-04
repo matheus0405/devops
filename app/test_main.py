@@ -29,4 +29,4 @@ def testar_nome_completo():
     requisicao = CLIENT.get("/autor")
 
     assert requisicao.status_code == 200
-    assert requisicao.json() == {"mensagem": "Pedro Rocha Horchulhack"}
+    assert requisicao.json() == {"mensagem": "Matheus Joave Baldo"}
