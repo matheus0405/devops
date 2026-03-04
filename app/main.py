@@ -1,10 +1,18 @@
 from fastapi import FastAPI
+from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
 from datetime import datetime
 
+from prometheus_client import start_http_server, Summary
+
+import requests
 import logging
 
-API = FastAPI()
+async def startup():
+    start_http_server(8001)
+
+API = FastAPI(on_startup=[startup])
+REQUEST = Summary('request_latency_seconds', 'Latência (segundos)')
 TAREFAS = []
 LOGGER = logging.getLogger('devops_tarefas')
 LOGGER.setLevel(logging.DEBUG)
@@ -48,13 +56,17 @@ async def listar_tarefas():
 
 async def autor():
     LOGGER.info("Usuário acessou /autor")
-    return {"mensagem": "Pedro Rocha Horchulhack"}
+    return {"mensagem": "Matheus Joave Baldo"}
 
 async def rota_inexistente():
     LOGGER.error("Rota não existe")
     return {"mensagem": "Rota não existe"}
 
+async def metricas():
+    return PlainTextResponse(requests.get("http://localhost:8001").text)
+
 API.add_api_route("/tarefas", listar_tarefas, methods=['GET'])
 API.add_api_route("/criar", criar_tarefa, methods=['POST'])
 API.add_api_route("/", pagina_inicial, methods=['GET'])
 API.add_api_route("/autor", autor, methods=['GET'])
+API.add_api_route("/metricas", metricas, methods=['GET'])
