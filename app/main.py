@@ -34,6 +34,8 @@ class Tarefa(BaseModel):
     data_criacao: datetime
     finalizado: bool = False
 
+
+@REQUEST.time()
 async def criar_tarefa(titulo: str):
     LOGGER.info("Usuário acessou /criar")
 
