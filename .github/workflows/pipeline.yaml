@@ -18,6 +18,18 @@ jobs:
         run: pip install -r requirements.txt
       - name: Testes unitários
         run: pytest
+  testes_SAST:
+    name: "Testes de segurança"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Install bandit"
+        run: pip install bandit
+      - name: "install safety"
+        run: pip install safety
+      - name: "Bandit Test"
+        run: bandit -r .
+      #- name: "Safety Test"
+      #  run: safety scan
   entrega:
     name: "Docker Hub"
     runs-on: ubuntu-latest
