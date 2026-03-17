@@ -22,6 +22,7 @@ jobs:
     name: "Testes de segurança"
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: "Install bandit"
         run: pip install bandit
       - name: "install safety"
